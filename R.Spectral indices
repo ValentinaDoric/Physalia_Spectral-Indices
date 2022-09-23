@@ -5,7 +5,7 @@ setwd("C:/lab/")  # windows
 
 l1992 <- brick("defor1.jpg")
 
-# layer 1 = NIR
+# layer 1 = NIR (Red Channel of RGB)
 # layer 2 = red
 # layer 3 = green
 
@@ -38,3 +38,13 @@ plot(dvi2006, col=cl)
 dvi_dif = dvi1992 - dvi2006 #viša vrijednost viša razlika
 cld <- colorRampPalette(c('blue','white','red'))(100) 
 plot(dvi_dif, col=cld)
+
+######################################
+#spectralIndices - calculates automaticaly all the spectral indices
+si2006 <- spectralIndices(l2006, green=3, red=2, nir=1)
+
+cl <- colorRampPalette(c('darkblue','yellow','red','black'))(100) # specifying a color scheme
+plot(si2006)
+
+pairs(si2006) #korelira sve indekse koji imaju korelaciju i traje vječno! bolji je hexagon binning
+
